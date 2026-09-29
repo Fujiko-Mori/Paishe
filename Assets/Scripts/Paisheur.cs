@@ -28,6 +28,7 @@ public class Paisheur : MonoBehaviour
             rigidbody2d.AddForceY(jumpForce * Mathf.Clamp(move.y,0,1));
             isGrounded = false;
         }
+        //Le perso est à y = -1.25, c'est trop rudimentaire pour le moment !
         if (this.transform.position.y < -1f)
         {
             isGrounded = true;
