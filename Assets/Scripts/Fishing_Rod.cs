@@ -79,15 +79,16 @@ public class Fishing_Rod : MonoBehaviour
         }
     }
 
-    //Le debug log est inutile, permet de set isFish -> true
+    //Permet de set isFish -> true
     //En vrai, le getFISH dans hamecon fait aussi ça
     // On garde ? on laisse au cas où I guess
-    void fishFound() { isFish = true; Debug.Log("FISH TROUVER AVEC L'EVENT !"); }
+    void fishFound() {isFish = true; } //"FISH TROUVER AVEC L'EVENT !
 
     //Changer ce truc pour la capture de poiscaille
     void getDatFish()
     {
-        Debug.Log("Fais les events lié à la capture d'un pichon");
+        //Fais les events lié à la capture d'un pichon
         isFish = false;
+
     }
 }
