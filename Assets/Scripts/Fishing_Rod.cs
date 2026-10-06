@@ -24,8 +24,6 @@ public class Fishing_Rod : MonoBehaviour
     void Start()
     {
         fishingAction.Enable();
-        hamecon = Hamecon.GetComponent<Hamecon>();
-        hamecon.OnFishEvent += fishFound;
         isFish = false;
         isFishing = false;
     }
@@ -62,6 +60,9 @@ public class Fishing_Rod : MonoBehaviour
     {
         isFishing = true;
         LE_hamecon = (GameObject)Instantiate(Hamecon, spawnPoint.transform.position, Quaternion.identity);
+        Hamecon scriptHamecon = LE_hamecon.GetComponent<Hamecon>();
+        scriptHamecon.setChance(chance);
+        scriptHamecon.OnFishEvent += fishFound;
         LE_hamecon.GetComponent<Hamecon>().setChance(chance);
         LE_hamecon.GetComponent<Rigidbody2D>().AddForce(new Vector2 (67f, 69f));
     }
@@ -71,9 +72,13 @@ public class Fishing_Rod : MonoBehaviour
     //Mais eh... ON va voir ça à la fin
     void getHameconBack()
     {
-        Destroy(LE_hamecon);
-        isFishing = false;
+        if (LE_hamecon != null)
+        {
+            Destroy(LE_hamecon);
+            isFishing = false;
+        }
     }
+
     //Le debug log est inutile, permet de set isFish -> true
     //En vrai, le getFISH dans hamecon fait aussi ça
     // On garde ? on laisse au cas où I guess

@@ -19,7 +19,7 @@ public class Hamecon : MonoBehaviour
     {
         maxProba = 10; //Set à la main, on va dire 10 pour tout
         //chance = 0; //Sert à rien, garde fou on sait jamais
-        timeUntilNext = 0;
+        timeUntilNext = Time.time + cooldown;
     }
 
     // Update is called once per frame
@@ -32,11 +32,11 @@ public class Hamecon : MonoBehaviour
 
         if (FISH)
         {
-            OnFishEvent?.Invoke();
+            
             Debug.Log("Yas une prise, on l'envoie à la canne à peche avec l'event Action");
         }
         //Appelle en boucle pour voir si y'a un poisson
-        FISH = Fishing();
+        else { FISH = Fishing(); }
 
     }
     //Permet de dire aux autres scripts l'état de FISH
@@ -58,11 +58,12 @@ public class Hamecon : MonoBehaviour
         Debug.Log("On teste si y'a un poiscalle");
         //Je précise pour éviter l'imprecision entre
         //System.Random et UnityEngine.Random
-        float randNumber = UnityEngine.Random.Range(0, maxProba);
+        float randNumber = UnityEngine.Random.Range(0f, maxProba);
         if (randNumber < chance)
         {
             FISH = true;
             Debug.Log("La poiscaille à été trouvé, on le lance dans l'update d'hamecon !");
+            OnFishEvent?.Invoke();
         }
         else 
         { 
