@@ -118,6 +118,7 @@ public class Fishing_Rod : MonoBehaviour
         {
             Destroy(LE_hamecon);
             isFishing = false;
+            StopCoroutine("KillHamecon");
         }
     }
 
@@ -139,7 +140,7 @@ public class Fishing_Rod : MonoBehaviour
         isFish = true; 
         Debug.Log("Fish trouvé");
         timingFish = Time.time;
-        StartCoroutine(KillHamecon());
+        StartCoroutine("KillHamecon");
     }
 
     //Changer ce truc pour la capture de poiscaille
