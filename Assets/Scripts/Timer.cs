@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Timer : MonoBehaviour
 {
@@ -24,7 +25,12 @@ public class Timer : MonoBehaviour
     {
         int minute = Mathf.FloorToInt(time / 60);
         int seconde = Mathf.FloorToInt(time % 60);
-        string str = minute.ToString() + ":" + seconde.ToString();
+        string str = "Temps: " + minute.ToString() + ":" + seconde.ToString();
         return str;
+    }
+
+    public bool timeIsUp()
+    {
+        return timerTime <= 0;
     }
 }
