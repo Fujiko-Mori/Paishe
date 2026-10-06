@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291caac360ad5cb47bba984d869cfb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  initialTimer: 10
+  initialTimer: 120
   timerText: {fileID: 1161403570}
 --- !u!114 &14097503
 MonoBehaviour:
