@@ -2325,6 +2325,22 @@ PrefabInstance:
       propertyPath: cooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: rareFish
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: commonFish
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: escapeFish
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: legendaryFish
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2638088997309373877, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.99
