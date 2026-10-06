@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //PTDR, TKI ?
@@ -20,12 +21,17 @@ public class Fishing_Rod : MonoBehaviour
     private bool isFishing;
     private bool isFish;
     private Hamecon hamecon;
+    //Problème stupide, solution stupide
+    [SerializeField] private float cooldown;
+    private float untilNextFishing;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         fishingAction.Enable();
         isFish = false;
         isFishing = false;
+        untilNextFishing = 0;
     }
 
     // Update is called once per frame
@@ -35,6 +41,9 @@ public class Fishing_Rod : MonoBehaviour
         //Verifie si la touche est pressé et qu'on est pas déjà en paishe
         if(fishingAction.IsPressed() && !isFishing)
         {
+            //Astuce pour les cooldowns eheh
+            if (Time.time < untilNextFishing) { return; }
+            untilNextFishing = Time.time + cooldown;
             Fishing();
         }
         //Capture le poisson
@@ -42,12 +51,18 @@ public class Fishing_Rod : MonoBehaviour
         //NE RETIRE PAS L'HAMECON
         else if (fishingAction.IsPressed() && isFish)
         {
+            //Astuce pour les cooldowns eheh
+            if (Time.time < untilNextFishing) { return; }
+            untilNextFishing = Time.time + cooldown;
             getDatFish();
         }
         //Retire l'hamecon
         //Verifie si on est entrain de pecher et que la touche est appuyé.
         else if (fishingAction.IsPressed() && isFishing) 
         {
+            //Astuce pour les cooldowns eheh
+            if (Time.time < untilNextFishing) { return; }
+            untilNextFishing = Time.time + cooldown;
             getHameconBack();
         }
     }
@@ -64,6 +79,7 @@ public class Fishing_Rod : MonoBehaviour
         scriptHamecon.setChance(chance);
         scriptHamecon.OnFishEvent += fishFound;
         LE_hamecon.GetComponent<Hamecon>().setChance(chance);
+        //Possible de changer le vector en fonction de la force si on veut rajouter un input dessus ????
         LE_hamecon.GetComponent<Rigidbody2D>().AddForce(new Vector2 (67f, 69f));
     }
 
@@ -82,7 +98,7 @@ public class Fishing_Rod : MonoBehaviour
     //Permet de set isFish -> true
     //En vrai, le getFISH dans hamecon fait aussi ça
     // On garde ? on laisse au cas où I guess
-    void fishFound() {isFish = true; } //"FISH TROUVER AVEC L'EVENT !
+    void fishFound() {isFish = true; Debug.Log("Fish trouvé"); } //"FISH TROUVER AVEC L'EVENT !
 
     //Changer ce truc pour la capture de poiscaille
     void getDatFish()
