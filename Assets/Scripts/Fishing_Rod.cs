@@ -18,6 +18,7 @@ public class Fishing_Rod : MonoBehaviour
     [SerializeField] private GameObject Hamecon;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float chance;
+    [SerializeField] private Score score;
     private GameObject LE_hamecon;
     public InputAction fishingAction;
     private bool isFishing;
@@ -150,14 +151,17 @@ public class Fishing_Rod : MonoBehaviour
         //Astuce pour les cooldowns eheh
         if (Time.time < timingFish+legendaryFish) 
         {
+            score.changeScore(CatchType.legendary);
             Debug.Log("Legendary Fish !!"); 
         }
         else if (Time.time < timingFish+rareFish)
         {
+            score.changeScore(CatchType.rare);
             Debug.Log("Rare fish !");
         }
         else if (Time.time < timingFish+commonFish)
         {
+            score.changeScore(CatchType.common);
             Debug.Log("common fish...");
         }
         getHameconBack();
