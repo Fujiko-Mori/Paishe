@@ -1,7 +1,9 @@
 using System.Collections;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 //PTDR, TKI ?
 using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
@@ -27,6 +29,9 @@ public class Fishing_Rod : MonoBehaviour
     //Problème stupide, solution stupide
     [SerializeField] private float cooldown;
     private float untilNextFishing;
+    //Barre de force
+    private Vector2 forceHamecon;
+    [SerializeField] private Slider NRJslider;
     //Time des 4 types de prises
     private float timingFish;
     [SerializeField] private float legendaryFish;
@@ -42,6 +47,8 @@ public class Fishing_Rod : MonoBehaviour
         isFish = false;
         isFishing = false;
         untilNextFishing = 0;
+        forceHamecon = new Vector2(1f, 0.3f);
+        NRJslider = GetComponent<Slider>();
         //Init des fish
         /*
         legendaryFish = 0.1f;
@@ -58,29 +65,27 @@ public class Fishing_Rod : MonoBehaviour
     {
         //Lance l'hameçon dans l'eau
         //Verifie si la touche est pressé et qu'on est pas déjà en paishe
-        if(fishingAction.IsPressed() && !isFishing)
+        if(fishingAction.WasPressedThisFrame() && !isFishing)
         {
-            //Astuce pour les cooldowns eheh
-            if (Time.time < untilNextFishing) { return; }
-            untilNextFishing = Time.time + cooldown;
+            float charge = 0;
+            float timeCharge = Time.time;
+            while(fishingAction.IsPressed())
+            {
+                NRJslider.value = charge;
+                charge = math.log(1+(Time.time-timeCharge));
+            }
             Fishing();
         }
         //Capture le poisson PUIS retire l'hamecon
         //Vérifie si la touche est pressé et qu'on a une touche
-        else if (fishingAction.IsPressed() && isFish)
+        else if (fishingAction.WasPressedThisFrame() && isFish)
         {
-            //Astuce pour les cooldowns eheh
-            if (Time.time < untilNextFishing) { return; }
-            untilNextFishing = Time.time + cooldown;
             getDatFish();
         }
         //Retire l'hamecon
         //Verifie si on est entrain de pecher et que la touche est appuyé.
-        else if (fishingAction.IsPressed() && isFishing) 
+        else if (fishingAction.WasPressedThisFrame() && isFishing) 
         {
-            //Astuce pour les cooldowns eheh
-            if (Time.time < untilNextFishing) { return; }
-            untilNextFishing = Time.time + cooldown;
             getHameconBack();
         }
         //Marche, mais moche, on pourra faire un truc plus clean avec fishFound
@@ -106,7 +111,7 @@ public class Fishing_Rod : MonoBehaviour
         scriptHamecon.OnFishEvent += fishFound;
         LE_hamecon.GetComponent<Hamecon>().setChance(chance);
         //Possible de changer le vector en fonction de la force si on veut rajouter un input dessus ????
-        LE_hamecon.GetComponent<Rigidbody2D>().AddForce(new Vector2 (67f, 69f));
+        LE_hamecon.GetComponent<Rigidbody2D>().AddForce(forceHamecon);
     }
 
     //KILL THE HAMECON !!!!!!!

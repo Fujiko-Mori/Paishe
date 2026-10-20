@@ -2369,6 +2369,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3304804038694049926, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304804038694049926, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263831445648956357, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939384145913991578, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
       propertyPath: m_Name
       value: Paisheur
