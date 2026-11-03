@@ -41,6 +41,15 @@ public class Fishing_Rod : MonoBehaviour
     [SerializeField] private float commonFish;
     [SerializeField] private float escapeFish;
 
+    //Audio
+    [SerializeField] private SoundEffects soundEffects;
+    //Screen Shake
+    [SerializeField] private CameraShake cameraShake;
+    [SerializeField] private float screenShakeDuration;
+    [SerializeField] private float screenShakeAmountCommon;
+    [SerializeField] private float screenShakeAmountRare;
+    [SerializeField] private float screenShakeAmountLegendary;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -149,6 +158,7 @@ public class Fishing_Rod : MonoBehaviour
     {
         isFish = true; 
         Debug.Log("Fish trouvé");
+        soundEffects.playSound(SoundEff.fishFound);
         timingFish = Time.time;
         StartCoroutine("KillHamecon");
     }
@@ -164,16 +174,22 @@ public class Fishing_Rod : MonoBehaviour
         if (Time.time < timingFish+legendaryFish) 
         {
             score.changeScore(CatchType.legendary);
+            soundEffects.playSound(SoundEff.legendary);
+            cameraShake.screenShake(screenShakeDuration, screenShakeAmountLegendary);
             Debug.Log("Legendary Fish !!"); 
         }
         else if (Time.time < timingFish+rareFish)
         {
             score.changeScore(CatchType.rare);
+            soundEffects.playSound(SoundEff.rare);
+            cameraShake.screenShake(screenShakeDuration, screenShakeAmountRare);
             Debug.Log("Rare fish !");
         }
         else if (Time.time < timingFish+commonFish)
         {
             score.changeScore(CatchType.common);
+            soundEffects.playSound(SoundEff.common);
+            cameraShake.screenShake(screenShakeDuration, screenShakeAmountCommon);
             Debug.Log("common fish...");
         }
         getHameconBack();

@@ -821,7 +821,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
   camTransform: {fileID: 0}
-  shakeDuration: 0
   shakeAmount: 0.7
   decreaseFactor: 1
 --- !u!1 &619394800
@@ -1081,6 +1080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 972440804}
   - component: {fileID: 972440803}
+  - component: {fileID: 972440805}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -1200,6 +1200,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &972440805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972440802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a2de9fb3c5e6040aed82b28efb7fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundEffects
+  audioSource: {fileID: 0}
+  FishFoundClip: {fileID: 8300000, guid: dbe5a7b5c6a7253428fecf97a95f5d6a, type: 3}
+  CommonFishClip: {fileID: 8300000, guid: 4e10fe7a826d8be4bbcaa0c0dfc714e7, type: 3}
+  RareFishClip: {fileID: 8300000, guid: 7498efb0859eaf1468aea884e4d4fd35, type: 3}
+  LegendaryFishClip: {fileID: 8300000, guid: affb65fc2e1592740a3ec947606254d4, type: 3}
 --- !u!1 &1067640395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2492,42 @@ PrefabInstance:
       propertyPath: score
       value: 
       objectReference: {fileID: 14097503}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: rareFish
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: commonFish
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 519420033}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: soundEffects
+      value: 
+      objectReference: {fileID: 972440805}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: legendaryFish
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: screenShakeDuration
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: screenShakeAmountRare
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: screenShakeAmountCommon
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055044016291761989, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
+      propertyPath: screenShakeAmountLegendary
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2638088997309373877, guid: 51ca7fe711f162a4ea80fb2373dca18d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.99
