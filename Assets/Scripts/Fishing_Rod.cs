@@ -32,6 +32,8 @@ public class Fishing_Rod : MonoBehaviour
     //Barre de force
     private Vector2 forceHamecon;
     [SerializeField] private Slider NRJslider;
+    private bool isCharging;
+    private float timeCharging;
     //Time des 4 types de prises
     private float timingFish;
     [SerializeField] private float legendaryFish;
@@ -48,7 +50,7 @@ public class Fishing_Rod : MonoBehaviour
         isFishing = false;
         untilNextFishing = 0;
         forceHamecon = new Vector2(1f, 0.3f);
-        NRJslider = GetComponent<Slider>();
+        timeCharging = 0f;
         //Init des fish
         /*
         legendaryFish = 0.1f;
@@ -65,18 +67,19 @@ public class Fishing_Rod : MonoBehaviour
     {
         //Lance l'hameçon dans l'eau
         //Verifie si la touche est pressé et qu'on est pas déjà en paishe
-        if(fishingAction.WasPressedThisFrame() && !isFishing)
+        //Charge up
+        if(fishingAction.IsPressed() && !isFishing)
         {
-            float charge = 0;
-            float timeCharge = Time.time;
-            /*
-            while(fishingAction.IsPressed())
-            {
-                NRJslider.value = charge;
-                charge = math.log(1+(Time.time-timeCharge));
-            }
-            */
+            timeCharging += Time.deltaTime;
+            NRJslider.value = math.clamp(math.log(1+timeCharging),0, 1);
+        }
+        //RELEASED !!
+        if (fishingAction.WasReleasedThisFrame() && !isFishing && Time.time > untilNextFishing)
+        {
+            forceHamecon = new Vector2(400f * NRJslider.value, 120f * NRJslider.value);
             Fishing();
+            untilNextFishing = Time.time + cooldown;    
+            timeCharging = 0f;
         }
         //Capture le poisson PUIS retire l'hamecon
         //Vérifie si la touche est pressé et qu'on a une touche
@@ -149,6 +152,7 @@ public class Fishing_Rod : MonoBehaviour
         timingFish = Time.time;
         StartCoroutine("KillHamecon");
     }
+
 
     //Changer ce truc pour la capture de poiscaille
     //Fait les debug, reste plus qu'à lier au score
