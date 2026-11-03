@@ -77,7 +77,7 @@ public class Fishing_Rod : MonoBehaviour
         //Lance l'hameçon dans l'eau
         //Verifie si la touche est pressé et qu'on est pas déjà en paishe
         //Charge up
-        if(fishingAction.IsPressed() && !isFishing)
+        if(fishingAction.IsPressed() && !isFishing && Time.time > untilNextFishing)
         {
             timeCharging += Time.deltaTime;
             NRJslider.value = math.clamp(math.log(1+timeCharging),0, 1);
@@ -138,6 +138,8 @@ public class Fishing_Rod : MonoBehaviour
             Destroy(LE_hamecon);
             isFishing = false;
             StopCoroutine("KillHamecon");
+            untilNextFishing = Time.time + cooldown;
+            NRJslider.value = 0;
         }
     }
 
@@ -171,21 +173,21 @@ public class Fishing_Rod : MonoBehaviour
         //Fais les events lié à la capture d'un pichon
         isFish = false;
         //Astuce pour les cooldowns eheh
-        if (Time.time < timingFish+legendaryFish) 
+        if (Time.time < timingFish + legendaryFish * (2.5f+NRJslider.value)) 
         {
             score.changeScore(CatchType.legendary);
             soundEffects.playSound(SoundEff.legendary);
             cameraShake.screenShake(screenShakeDuration, screenShakeAmountLegendary);
             Debug.Log("Legendary Fish !!"); 
         }
-        else if (Time.time < timingFish+rareFish)
+        else if (Time.time < timingFish + rareFish * (1.5f+NRJslider.value))
         {
             score.changeScore(CatchType.rare);
             soundEffects.playSound(SoundEff.rare);
             cameraShake.screenShake(screenShakeDuration, screenShakeAmountRare);
             Debug.Log("Rare fish !");
         }
-        else if (Time.time < timingFish+commonFish)
+        else if (Time.time < timingFish + commonFish * (0.7f+NRJslider.value))
         {
             score.changeScore(CatchType.common);
             soundEffects.playSound(SoundEff.common);
