@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -49,6 +50,9 @@ public class Fishing_Rod : MonoBehaviour
     [SerializeField] private float screenShakeAmountCommon;
     [SerializeField] private float screenShakeAmountRare;
     [SerializeField] private float screenShakeAmountLegendary;
+    //Text Catch Type
+    [SerializeField] private float textCatchTypeDuration;
+    [SerializeField] private TextMeshProUGUI catchTypeText;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -178,7 +182,9 @@ public class Fishing_Rod : MonoBehaviour
             score.changeScore(CatchType.legendary);
             soundEffects.playSound(SoundEff.legendary);
             cameraShake.screenShake(screenShakeDuration, screenShakeAmountLegendary);
-            Debug.Log("Legendary Fish !!"); 
+            Debug.Log("Legendary Fish !!");
+            catchTypeText.text = "Legendary Fish !!";
+            StartCoroutine(reinitialiseCatchTypeText());
         }
         else if (Time.time < timingFish + rareFish * (1.5f+NRJslider.value))
         {
@@ -186,6 +192,8 @@ public class Fishing_Rod : MonoBehaviour
             soundEffects.playSound(SoundEff.rare);
             cameraShake.screenShake(screenShakeDuration, screenShakeAmountRare);
             Debug.Log("Rare fish !");
+            catchTypeText.text = "Rare Fish !";
+            StartCoroutine(reinitialiseCatchTypeText());
         }
         else if (Time.time < timingFish + commonFish * (0.7f+NRJslider.value))
         {
@@ -193,7 +201,15 @@ public class Fishing_Rod : MonoBehaviour
             soundEffects.playSound(SoundEff.common);
             cameraShake.screenShake(screenShakeDuration, screenShakeAmountCommon);
             Debug.Log("common fish...");
+            catchTypeText.text = "Common Fish...";
+            StartCoroutine(reinitialiseCatchTypeText());
         }
         getHameconBack();
+    }
+
+    IEnumerator reinitialiseCatchTypeText()
+    {
+        yield return new WaitForSeconds(textCatchTypeDuration);
+        catchTypeText.text = "";
     }
 }
