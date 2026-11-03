@@ -69,11 +69,13 @@ public class Fishing_Rod : MonoBehaviour
         {
             float charge = 0;
             float timeCharge = Time.time;
+            /*
             while(fishingAction.IsPressed())
             {
                 NRJslider.value = charge;
                 charge = math.log(1+(Time.time-timeCharge));
             }
+            */
             Fishing();
         }
         //Capture le poisson PUIS retire l'hamecon
