@@ -433,6 +433,46 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Move
       m_Flags: 8
+    - m_Name: 2D Vector
+      m_Id: 1d812b2c-ddec-419a-a4af-b07f430a7904
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 2225160f-945b-45f6-96bc-74c5686b4859
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 92984013-6737-4ddf-9a1f-daf97b237618
+      m_Path: <Gamepad>/dpad/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: d2f793e4-b0cd-442c-a772-7f07a02fd74a
+      m_Path: <Gamepad>/dpad/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 46982f88-6359-43ed-af47-28d360c8a789
+      m_Path: <Gamepad>/dpad/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
     m_Flags: 0
     m_Priority: 0
 --- !u!114 &2055044016291761989
@@ -467,6 +507,30 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Fishing
       m_Flags: 0
+    - m_Name: 
+      m_Id: 42c9db1b-08ba-4ce5-9289-4735ed0f155e
+      m_Path: <Gamepad>/buttonWest
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fishing
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 0371ded7-ed9c-4b68-a1eb-65567a5fa068
+      m_Path: <Gamepad>/rightShoulder
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fishing
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 7fa44ce3-370d-45eb-ae30-79842208c23d
+      m_Path: <Gamepad>/leftShoulder
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fishing
+      m_Flags: 0
     m_Flags: 0
     m_Priority: 0
   cooldown: 1
@@ -475,6 +539,14 @@ MonoBehaviour:
   rareFish: 0.4
   commonFish: 1
   escapeFish: 3
+  soundEffects: {fileID: 0}
+  cameraShake: {fileID: 0}
+  screenShakeDuration: 0
+  screenShakeAmountCommon: 0
+  screenShakeAmountRare: 0
+  screenShakeAmountLegendary: 0
+  textCatchTypeDuration: 0
+  catchTypeText: {fileID: 0}
 --- !u!1 &8143428233279326005
 GameObject:
   m_ObjectHideFlags: 0
